@@ -89,9 +89,8 @@ client.on("message", (msg) => {
 
       sendSuccess(mkSuccess(nick), nick)
     } else if (args.length === 3) {
-      let well = args[2];
       let nick =
-        well +
+        args[2] +
         where[Math.floor(Math.random() * where.length)] +
         doing[Math.floor(Math.random() * doing.length)] +
         args[1];
