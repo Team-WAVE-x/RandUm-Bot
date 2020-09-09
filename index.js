@@ -9,8 +9,13 @@ function info(msg) {
   console.log(`[INFO] ${msg}`);
 }
 
-
-    
+function mkSuccess(nick){
+  let embed = new Discord.MessageEmbed()
+  .setColor("#42f55a")
+  .setTitle("성공")
+  .setDescription(`**\`${nick}\`**로 변경이 완료되었습니다.\n\n※봇의 역할 권한이 명령어를 쓰는 사람보다 높지 않으면 닉네임이 바뀌지 않습니다. \n(서버 관리자는 명령어를 쓸 수 없습니다.)`);
+  return embed;
+}
 
 
 client.on("ready", () => {
@@ -23,6 +28,12 @@ client.on("message", (msg) => {
   const args = msg.content.split(" ");
   const cmd = msg.content.slice(1, msg.content.length);
 
+  function sendSuccess(embed, nick){
+    msg.channel.send(embed);
+    msg.member.setNickname(nick, "엄준식");
+  }
+  
+  
   const where = [
     "롯데리아",
     "목욕탕",
@@ -52,34 +63,31 @@ client.on("message", (msg) => {
 
   if (!msg.content.startsWith(prefix)) return;
 
+  let helpEmbed = new Discord.MessageEmbed()
+      .setColor("#42f55a")
+      .setTitle("How To Use")
+      .setDescription(
+        "1. !randUm [닉네임] [거주지]\n2. 닉네임을 적지 않으면 디스코드 이름이 들어간다\n3. 거주지를 적지 않으면 거주지가 들어가지 않은 닉네임이 만들어진다\n4. 닉네임에 띄어쓰기를 넣으면 제대로 작동하지 않는다\n5. 엄준식은 존재한다."
+      );
+
   if (cmd.startsWith("randUm")) {
-    let nick =
-      where[Math.floor(Math.random() * where.length)] +
-      doing[Math.floor(Math.random() * doing.length)] +
-      msg.author.username;
 
     info(args);
 
     if (args.length === 1) {
-      let embed = new Discord.MessageEmbed()
-        .setColor("#42f55a")
-        .setTitle("성공")
-        .setDescription(`**\`${nick}\`**로 변경이 완료되었습니다.\n\n※봇의 역할 권한이 명령어를 쓰는 사람보다 높지 않으면 닉네임이 바뀌지 않습니다. \n(서버 관리자는 명령어를 쓸 수 없습니다.)`);
-      msg.channel.send(embed);
-      msg.member.setNickname(nick, "엄준식");
+      let nick =
+      where[Math.floor(Math.random() * where.length)] +
+      doing[Math.floor(Math.random() * doing.length)] +
+      msg.author.username;
+
+      sendSuccess(mkSuccess(nick), nick)
     } else if (args.length === 2) {
       let nick =
         where[Math.floor(Math.random() * where.length)] +
         doing[Math.floor(Math.random() * doing.length)] +
         args[1];
 
-      let embed = new Discord.MessageEmbed()
-        .setColor("#42f55a")
-        .setTitle("성공")
-        .setDescription(`**\`${nick}\`**로 변경이 완료되었습니다.\n\n※봇의 역할 권한이 명령어를 쓰는 사람보다 높지 않으면 닉네임이 바뀌지 않습니다. \n(서버 관리자는 명령어를 쓸 수 없습니다.)`);
-
-      msg.channel.send(embed);
-      msg.member.setNickname(nick, "엄준식");
+      sendSuccess(mkSuccess(nick), nick)
     } else if (args.length === 3) {
       let well = args[2];
       let nick =
@@ -88,21 +96,10 @@ client.on("message", (msg) => {
         doing[Math.floor(Math.random() * doing.length)] +
         args[1];
 
-      let embed = new Discord.MessageEmbed()
-        .setColor("#42f55a")
-        .setTitle("성공")
-        .setDescription(`**\`${nick}\`** 로 닉네임 변경이 완료되었습니다. \n\n※봇의 역할 권한이 명령어를 쓰는 사람보다 높지 않으면 닉네임이 바뀌지 않습니다. \n(서버 관리자는 명령어를 쓸 수 없습니다.)`);
-      msg.channel.send(embed);
-      msg.member.setNickname(nick, "엄준식");
+      sendSuccess(mkSuccess(nick), nick)
     }
   } else if (cmd === "help") {
-    let embed = new Discord.MessageEmbed()
-      .setColor("#42f55a")
-      .setTitle("How To Use")
-      .setDescription(
-        "1. !randUm [닉네임] [거주지]\n2. 닉네임을 적지 않으면 디스코드 이름이 들어간다\n3. 거주지를 적지 않으면 거주지가 들어가지 않은 닉네임이 만들어진다\n4. 닉네임에 띄어쓰기를 넣으면 제대로 작동하지 않는다\n5. 엄준식은 존재한다."
-      );
-    msg.channel.send(embed);
+    msg.channel.send(helpEmbed);
   }
 });
 

@@ -1,0 +1,22 @@
+{
+  "name": "randum-bot",
+  "version": "1.0.0",
+  "description": "당신의 디스코드 이름, \r 엄(검열) 처럼 바꿔드립니다.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Team-WAVE-x/RandUm-Bot.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Team-WAVE-x/RandUm-Bot/issues"
+  },
+  "homepage": "https://github.com/Team-WAVE-x/RandUm-Bot#readme",
+  "dependencies": {
+    "discord.js": "^12.3.1"
+  }
+}
