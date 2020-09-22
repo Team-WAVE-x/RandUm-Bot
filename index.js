@@ -38,7 +38,7 @@ client.on("message", (msg) => {
       .setColor("#42f55a")
       .setTitle("How To Use")
       .setDescription(
-        "1. !randUm [닉네임] [거주지]\n2. 닉네임을 적지 않으면 디스코드 이름이 들어간다\n3. 거주지를 적지 않으면 거주지가 들어가지 않은 닉네임이 만들어진다\n4. 닉네임에 띄어쓰기를 넣으면 제대로 작동하지 않는다\n5. 엄준식은 존재한다."
+        "1. !randUm [닉네임] [거주지]\n2. 닉네임을 적지 않으면 디스코드 이름이 들어간다\n3. 거주지를 적지 않으면 거주지가 들어가지 않은 닉네임이 만들어진다\n4. 닉네임에 띄어쓰기를 넣으면 제대로 작동하지 않는다\n5. 엄준식은 존재한다.\n\n[초대링크](https://discord.com/api/oauth2/authorize?client_id=737503637399666711&permissions=134217728&scope=bot)"
       );
 
   if (cmd.startsWith("randUm")) {
