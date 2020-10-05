@@ -22,6 +22,11 @@ client.on("message", (msg) => {
   const args = msg.content.split(" ");
   const cmd = msg.content.slice(1, msg.content.length);
 
+  if (msg.author.bot) return
+
+  if (msg.content === '엄') msg.channel.send('준')
+  else if (msg.content === '준') msg.channel.send('식')
+  
   if (!msg.content.startsWith(prefix)) return;
 
   if (cmd.startsWith("randUm")) {
