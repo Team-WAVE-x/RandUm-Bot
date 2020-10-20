@@ -34,7 +34,7 @@ client.on("message", (msg) => {
     axios.request({ method: 'GET', url: 'https://aje.teamwv.ml/api/json', headers: { 'Content-Type': 'application/json' }})
     .then(res => {
       msg.channel.send(new MessageEmbed({title: res.data.que, description: '과연 답은? 두구두구두구', color:'#42f55a'}))
-      setTimeout(() => msg.channel.send(new MessageEmbed({title: res.data.que, description: `||${res.data.answer}||`, color:'#42f55a'})), 3000)
+      setTimeout(() => msg.channel.send(new MessageEmbed({title: res.data.que, description: `||${res.data.answer}||`, color:'#42f55a'})), 10000)
     })
   }
 })
