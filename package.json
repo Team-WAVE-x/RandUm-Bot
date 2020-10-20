@@ -6,17 +6,18 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Team-WAVE-x/RandUm-Bot.git"
-  },
-  "author": "",
+  "repository": "git+https://github.com/Team-WAVE-x/RandUm-Bot.git",
+  "author": "시혁 박 <exon.indiv@gmail.com>",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Team-WAVE-x/RandUm-Bot/issues"
   },
   "homepage": "https://github.com/Team-WAVE-x/RandUm-Bot#readme",
   "dependencies": {
+    "axios": "^0.20.0",
     "discord.js": "^12.3.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.11.0"
   }
 }
