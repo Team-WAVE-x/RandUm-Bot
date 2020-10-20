@@ -1,4 +1,5 @@
 const { Client, MessageEmbed } = require("discord.js");
+const axios = require('axios')
 const client = new Client();
 const { token } = require('./settings.json')
 const prefix = '!'
@@ -30,7 +31,15 @@ client.on("message", (msg) => {
     msg.channel.send(new MessageEmbed({title:'성공', description: makeDes(nick), color:'#42f55a'}))
     msg.member.setNickname(nick, "엄준식")
   } else if (cmd === "help") msg.channel.send(helpEmbed)
-  else if (cmd === 'aje') msg.channel.send(new MessageEmbed({title:}))
+  else if (cmd === 'aje') {
+    axios.request({
+      method: 'GET',
+      url: 'https://aje.teamwv.ml/api/json',
+      headers: { 
+        'Content-Type': 'application/json'
+      }
+    }).then(res => msg.channel.send(new MessageEmbed({title:res.data.que, description: `||${res.data.answer}||`, color:'#42f55a'})))
+  }
 
 
 });
