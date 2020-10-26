@@ -9,6 +9,8 @@ const { token, prefix = '!' } = require('./settings.json')
  * @returns {string}
  */
 const pick = (arr) => arr[Math.floor(Math.random() * arr.length)]
+const bold = (txt) => { return `**${txt}**` }
+const spoiler = (txt) => { return `||${txt}||` }
 
 const client = new Client()
 client.login(token)
@@ -33,14 +35,14 @@ client.on('message', async (msg) => {
 
       let embed = new MessageEmbed({
         title: '성공',
-        description: '**' + nick + '**로 변경이 완료되었습니다.',
+        description: bold(nick) + '로 변경이 완료되었습니다.',
         color: 0x42f55a
       })
 
       if (msg.member.nickname !== nick) {
         embed = new MessageEmbed({
           title: '실패',
-          description: '**' + nick + '**로 변경하지 못했습니다.\n봇의 역할 권한이 명령어를 쓰는 사람보다 높아 실패하는 경우가 많습니다.',
+          description: bold(nick) + '로 변경하지 못했습니다.\n봇의 역할 권한이 명령어를 쓰는 사람보다 높아 실패하는 경우가 많습니다.',
           color: 0xff0000
         })
       }
@@ -69,7 +71,7 @@ client.on('message', async (msg) => {
       })
 
       collector.on('end', () => {
-        if (!answered) channel.send('시간 끝! 정답은... ||' + res.body.answer + '||')
+        if (!answered) channel.send('시간 끝! 정답은... ' + spoiler(res.body.answer))
       })
 
       channel.send(embed)
